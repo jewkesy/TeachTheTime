@@ -15,13 +15,51 @@
     <script type="text/javascript" src="js/jquery.flippy.min.js"></script>
     <script type="text/javascript" src="js/teachthetime.js"></script>
     <script type="text/javascript">
-      $(document).ready(function() {
+        $(document).ready(function() {
+            
+            //resetPage();
 
-      });
+
+            $(function() {
+ 
+      setInterval( function() {
+      var seconds = new Date().getSeconds();
+      var sdegree = seconds * 6;
+      var srotate = "rotate(" + sdegree + "deg)";
+      
+      $("#sec").css({ "transform": srotate });
+          
+      }, 1000 );
+      
+      setInterval( function() {
+      var hours = new Date().getHours();
+      var mins = new Date().getMinutes();
+      var hdegree = hours * 30 + (mins / 2);
+      var hrotate = "rotate(" + hdegree + "deg)";
+      
+      $("#hour").css({ "transform": hrotate});
+          
+      }, 1000 );
+
+      setInterval( function() {
+      var mins = new Date().getMinutes();
+      var mdegree = mins * 6;
+      var mrotate = "rotate(" + mdegree + "deg)";
+      
+      $("#min").css({ "transform" : mrotate });
+          
+      }, 1000 );
+ 
+});
+        });
     </script>
 </head>
 <body>
-
+<ul id="clock"> 
+  <li id="sec"></li>
+  <li id="hour"></li>
+  <li id="min"></li>
+</ul>
     <div id="header"><h1>Welcome to TeachTheTime</h1><h2>Helping Your Child Learn to Recognise the Time</h2></div>
     <div id="menu">
       <ul id="levels">
@@ -45,6 +83,7 @@
                 </div>
             </div>
             
+
             <ul id="action-btn">
                 <li><a class="btn" id="btn-first" href="#">First</a></li>
                 <li><a class="btn" id="btn-prev" href="#">Previous</a></li>
@@ -60,11 +99,13 @@
 	<![endif]-->
 
 
+
+
+
     <div class="footer" id="footer">
         <div class="about" id="about">
         	<h3>"The Parent Bit..."</h3>
         	<p>This application was created to help my young daughter practice telling the time and to compliment her study at school.</p>
-        	<p>The words range from Reception Year 1 to Year 6, displayed using flashcards in decks of <span id="wordCount"></span>.  There are currently 3500 words.</p>
         	<p>A few design considerations have been implemented: -<br />Use a flashcard approach<br />Rather than specify the difficulty, which can be daunting to a child, I've used different colours<br />Minimal on-screen content to prevent distractions<br />Lightweight, scaleable design, suitable for a range of devices<br />The last flashcard is a random animal reward!</p>
         	
         	<p>The application is free to use, to reference and to share. Any queries, let me know!</p>
