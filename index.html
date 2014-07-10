@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="high frequency words, key stage words, keywords, key words, learn to read" />
+    <meta name="description" content="Interactive web app to help children learn and recognise the time" />
+	<meta name="robots" content="index, follow" />
+	<meta name="googlebot" content="index, follow" />
+	<meta name="author" content="Daryl Jewkes, teachthetime@daryljewkes.com" />
+	
+    <title>TeachTheTime - Helping Your Child Learn to Recognise the Time</title>
+
+    <link rel="stylesheet" href="css/style.css"/>
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.flippy.min.js"></script>
+    <script type="text/javascript" src="js/teachthetime.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+
+      });
+    </script>
+</head>
+<body>
+
+    <div id="header"><h1>Welcome to TeachTheTime</h1><h2>Helping Your Child Learn to Recognise the Time</h2></div>
+    <div id="menu">
+      <ul id="levels">
+        <li class="lvl1">Orange</li>        
+        <li class="lvl2">Green</li>  
+        <li class="lvl3">Red</li>  
+        <li class="lvl4">Brown</li>  
+        <li class="lvl5">Purple</li>  
+        <li class="lvl6">Blue</li>  
+      </ul>
+    </div>
+    <div id="goBack">
+        <ul><li>Go Back</li></ul>
+    </div>
+
+    <div id="wrapper">
+        <div class="row">
+            <div class="flipbox-container box100">
+                <div id="flipbox1" class="flipbox">
+                    <span>Hello World</span>
+                </div>
+            </div>
+            
+            <ul id="action-btn">
+                <li><a class="btn" id="btn-first" href="#">First</a></li>
+                <li><a class="btn" id="btn-prev" href="#">Previous</a></li>
+                <li><a class="btn" id="btn-next" href="#">Next</a></li>
+                <li><a class="btn" id="btn-last" href="#">Last</a></li>
+                <br class="clear"/>
+            </ul>
+        </div>
+    </div>
+
+    <!--[if lt IE 9]>
+	<script src="js/excanvas.min.js" type="text/javascript"></script>
+	<![endif]-->
+
+
+    <div class="footer" id="footer">
+        <div class="about" id="about">
+        	<h3>"The Parent Bit..."</h3>
+        	<p>This application was created to help my young daughter practice telling the time and to compliment her study at school.</p>
+        	<p>The words range from Reception Year 1 to Year 6, displayed using flashcards in decks of <span id="wordCount"></span>.  There are currently 3500 words.</p>
+        	<p>A few design considerations have been implemented: -<br />Use a flashcard approach<br />Rather than specify the difficulty, which can be daunting to a child, I've used different colours<br />Minimal on-screen content to prevent distractions<br />Lightweight, scaleable design, suitable for a range of devices<br />The last flashcard is a random animal reward!</p>
+        	
+        	<p>The application is free to use, to reference and to share. Any queries, let me know!</p>
+        </div>
+        <div>
+        	<p>&copy; Copyright Daryl Jewkes | <a href="mailto:teachthetime@daryljewkes.com?Subject=TeachTheTime" target="_blank">teachthetime@daryljewkes.com</a> | <img src="images/icon_twitter.png" height="16px" /> <a href="https://twitter.com/JewkesD" target="_blank">@JewkesD</a></p>  
+        </div>
+    </div>
+</body>
+</html>
