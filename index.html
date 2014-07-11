@@ -17,73 +17,68 @@
     <script type="text/javascript">
         $(document).ready(function() {
             
-            //resetPage();
-
+            resetPage();
 
             $(function() {
  
-      setInterval( function() {
-      var seconds = new Date().getSeconds();
-      var sdegree = seconds * 6;
-      var srotate = "rotate(" + sdegree + "deg)";
-      
-      $("#sec").css({ "transform": srotate });
-          
-      }, 1000 );
-      
-      setInterval( function() {
-      var hours = new Date().getHours();
-      var mins = new Date().getMinutes();
-      var hdegree = hours * 30 + (mins / 2);
-      var hrotate = "rotate(" + hdegree + "deg)";
-      
-      $("#hour").css({ "transform": hrotate});
-          
-      }, 1000 );
+                  setInterval( function() {
+                      var seconds = new Date().getSeconds();
+                      var sdegree = seconds * 6;
+                      var srotate = "rotate(" + sdegree + "deg)";
+                      
+                      $("#sec").css({ "transform": srotate });
+                      
+                  }, 1000 );
+                  
+                  setInterval( function() {
+                      var hours = new Date().getHours();
+                      var mins = new Date().getMinutes();
+                      var hdegree = hours * 30 + (mins / 2);
+                      var hrotate = "rotate(" + hdegree + "deg)";
+                      
+                      $("#hour").css({ "transform": hrotate});
+                      
+                  }, 1000 );
 
-      setInterval( function() {
-      var mins = new Date().getMinutes();
-      var mdegree = mins * 6;
-      var mrotate = "rotate(" + mdegree + "deg)";
-      
-      $("#min").css({ "transform" : mrotate });
-          
-      }, 1000 );
- 
-});
+                  setInterval( function() {
+                      var mins = new Date().getMinutes();
+                      var mdegree = mins * 6;
+                      var mrotate = "rotate(" + mdegree + "deg)";
+                      
+                      $("#min").css({ "transform" : mrotate });
+                      
+                  }, 1000 );
+             
+            });
         });
     </script>
 </head>
 <body>
-<ul id="clock"> 
-  <li id="sec"></li>
-  <li id="hour"></li>
-  <li id="min"></li>
-</ul>
-    <div id="header"><h1>Welcome to TeachTheTime</h1><h2>Helping Your Child Learn to Recognise the Time</h2></div>
-    <div id="menu">
-      <ul id="levels">
-        <li class="lvl1">Orange</li>        
-        <li class="lvl2">Green</li>  
-        <li class="lvl3">Red</li>  
-        <li class="lvl4">Brown</li>  
-        <li class="lvl5">Purple</li>  
-        <li class="lvl6">Blue</li>  
-      </ul>
-    </div>
-    <div id="goBack">
-        <ul><li>Go Back</li></ul>
-    </div>
+  <div id="header"><h1>Welcome to TeachTheTime</h1><h2>Helping Your Child Learn to Recognise the Time</h2></div>
+      <div id="container">
+        <div id="theClock">
+            <ul id="clock"> 
+                <li id="sec"></li>
+                <li id="hour"></li>
+                <li id="min"></li>
+            </ul>
+        </div>
+        <div id="menu">
+          <ul id="levels">
+            <li class="lvl1">Orange</li>    
+            <li class="lvl2">Green</li>  
+            <li class="lvl3">Red</li>  
+            <li class="lvl4">Brown</li>  
+            <li class="lvl5">Purple</li>  
+            <li class="lvl6">Blue</li>  
+          </ul>
+        </div>
+      
+        <div id="goBack">
+            <ul><li>Go Back</li></ul>
+        </div>
 
-    <div id="wrapper">
         <div class="row">
-            <div class="flipbox-container box100">
-                <div id="flipbox1" class="flipbox">
-                    <span>Hello World</span>
-                </div>
-            </div>
-            
-
             <ul id="action-btn">
                 <li><a class="btn" id="btn-first" href="#">First</a></li>
                 <li><a class="btn" id="btn-prev" href="#">Previous</a></li>
@@ -94,19 +89,11 @@
         </div>
     </div>
 
-    <!--[if lt IE 9]>
-	<script src="js/excanvas.min.js" type="text/javascript"></script>
-	<![endif]-->
-
-
-
-
-
     <div class="footer" id="footer">
         <div class="about" id="about">
         	<h3>"The Parent Bit..."</h3>
         	<p>This application was created to help my young daughter practice telling the time and to compliment her study at school.</p>
-        	<p>A few design considerations have been implemented: -<br />Use a flashcard approach<br />Rather than specify the difficulty, which can be daunting to a child, I've used different colours<br />Minimal on-screen content to prevent distractions<br />Lightweight, scaleable design, suitable for a range of devices<br />The last flashcard is a random animal reward!</p>
+        	<p>A few design considerations have been implemented: -<br />Rather than specify the difficulty, which can be daunting to a child, I've used different colours<br />Minimal on-screen content to prevent distractions<br />Lightweight, scaleable design, suitable for a range of devices</p>
         	
         	<p>The application is free to use, to reference and to share. Any queries, let me know!</p>
         </div>
