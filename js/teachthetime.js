@@ -133,45 +133,51 @@ function setTimeText(theTime) {
     var hour = theTime.getHours();
     var mins = theTime.getMinutes();
     var displayMins = "";
-console.log(mins);
+
     var combinedDisplay = "";
 
     if (mins >=57 && mins <= 3) {
-        displayMins = " o'clock ";
+        displayMins = hour + " o'clock ";
     } 
     else if (mins >=4 && mins <=8) {
-        displayMins = " 5 minutes past ";
+        displayMins = " 5 minutes past " + hour;
     }
     else if (mins >=9 && mins <=13) {
-        displayMins = " 10 minutes past ";
+        displayMins = " 10 minutes past " + hour;
     }
     else if (mins >=14 && mins <=18) {
-        displayMins = " quarter past ";
+        displayMins = " quarter past " + hour;
     }
     else if (mins >=19 && mins <=23) {
-        displayMins = " 20 minutes past ";
+        displayMins = " 20 minutes past " + hour;
     }
     else if (mins >=24 && mins <=28) {
-        displayMins = " 25 minutes past ";
+        displayMins = " 25 minutes past " + hour;
     }
     else if (mins >=29 && mins <=33) {
-        displayMins = " half past ";
+        displayMins = " half past " + hour;
     }
     else if (mins >=34 && mins <=38) {
-        displayMins = " 25 minutes to ";
+        hour = hour + 1;
+        displayMins = " 25 minutes to " + hour;
     }
     else if (mins >=39 && mins <=43) {
-        displayMins = " 20 minutes to ";
+        hour = hour + 1;
+        displayMins = " 20 minutes to " + hour;
     }
     else if (mins >=44 && mins <=48) {
-        displayMins = " quarter to ";
+        hour = hour + 1;
+        displayMins = " quarter to " + hour;
     }
     else if (mins >=49 && mins <=53) {
-        displayMins = " 10 minutes to ";
+        hour = hour + 1;
+        displayMins = " 10 minutes to " + hour;
     }
     else if (mins >=54 && mins <=58) {
-        displayMins = " 5 minutes to ";
+        hour = hour + 1;
+        displayMins = " 5 minutes to " + hour;
     }
+
 
     combinedDisplay = displayMins;
 
