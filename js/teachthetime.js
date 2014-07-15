@@ -135,7 +135,7 @@ function setTimeText(theTime) {
     var displayMins = "";
 
     var combinedDisplay = "";
-
+    if (hour >= 12) hour = hour - 12;
     if (mins <= 3) {
         displayMins = hour + " o'clock ";
     } 
