@@ -136,7 +136,7 @@ function setTimeText(theTime) {
 
     var combinedDisplay = "";
 
-    if (mins >=57 && mins <= 3) {
+    if (mins <= 3) {
         displayMins = hour + " o'clock ";
     } 
     else if (mins >=4 && mins <=8) {
@@ -173,14 +173,17 @@ function setTimeText(theTime) {
         hour = hour + 1;
         displayMins = " 10 minutes to " + hour;
     }
-    else if (mins >=54 && mins <=58) {
+    else if (mins >=54) {
         hour = hour + 1;
         displayMins = " 5 minutes to " + hour;
     }
+    else {
+        displayMins = "unknown time! " + mins;
+    }
 
-
+//console.log(mins);
     combinedDisplay = displayMins;
-
+//console.log(combinedDisplay);
     $("#timeText").html(combinedDisplay);    
 }
 
