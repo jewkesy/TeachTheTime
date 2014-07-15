@@ -93,6 +93,91 @@ function resetPage() {
     });
 }
 
+
+function liveTime() {
+     $(function() {
+        var initialRun = true;
+
+          setInterval( function() {
+                var theCurrentDate = new Date();
+              var seconds = theCurrentDate.getSeconds();
+              var sdegree = seconds * 6;
+              var srotate = "rotate(" + sdegree + "deg)";
+
+              $("#sec").css({ "transform": srotate });
+              setTimeText(theCurrentDate);
+          }, 1000 );
+          
+          setInterval( function() {
+              var hours = new Date().getHours();
+              var mins = new Date().getMinutes();
+              var hdegree = hours * 30 + (mins / 2);
+              var hrotate = "rotate(" + hdegree + "deg)";
+              
+              $("#hour").css({ "transform": hrotate});
+              
+          }, 1000 );
+
+          setInterval( function() {
+              var mins = new Date().getMinutes();
+              var mdegree = mins * 6;
+              var mrotate = "rotate(" + mdegree + "deg)";
+              
+              $("#min").css({ "transform" : mrotate });
+              
+          }, 1000 );
+    });
+}
+
+function setTimeText(theTime) {
+    var hour = theTime.getHours();
+    var mins = theTime.getMinutes();
+    var displayMins = "";
+console.log(mins);
+    var combinedDisplay = "";
+
+    if (mins >=57 && mins <= 3) {
+        displayMins = " o'clock ";
+    } 
+    else if (mins >=4 && mins <=8) {
+        displayMins = " 5 minutes past ";
+    }
+    else if (mins >=9 && mins <=13) {
+        displayMins = " 10 minutes past ";
+    }
+    else if (mins >=14 && mins <=18) {
+        displayMins = " quarter past ";
+    }
+    else if (mins >=19 && mins <=23) {
+        displayMins = " 20 minutes past ";
+    }
+    else if (mins >=24 && mins <=28) {
+        displayMins = " 25 minutes past ";
+    }
+    else if (mins >=29 && mins <=33) {
+        displayMins = " half past ";
+    }
+    else if (mins >=34 && mins <=38) {
+        displayMins = " 25 minutes to ";
+    }
+    else if (mins >=39 && mins <=43) {
+        displayMins = " 20 minutes to ";
+    }
+    else if (mins >=44 && mins <=48) {
+        displayMins = " quarter to ";
+    }
+    else if (mins >=49 && mins <=53) {
+        displayMins = " 10 minutes to ";
+    }
+    else if (mins >=54 && mins <=58) {
+        displayMins = " 5 minutes to ";
+    }
+
+    combinedDisplay = displayMins;
+
+    $("#timeText").html(combinedDisplay);    
+}
+
 function loadTimes(level, count) {
     console.error('NotImplementedException');
     return;
