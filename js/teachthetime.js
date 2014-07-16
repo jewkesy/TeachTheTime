@@ -93,7 +93,6 @@ function resetPage() {
     });
 }
 
-
 function liveTime() {
      $(function() {
         var initialRun = true;

@@ -17,6 +17,9 @@ h1{font-size:2em;margin-bottom:5px; width: 100%; text-align: center;}
 h2{font-size:1.5em;margin-bottom:35px; width: 100%; text-align: center;}
 p{line-height:21px;}
 #menu{float: left;}
+#menu li {
+	list-style-type: none;
+}
 #container{margin:0 auto 60px;position:relative;display: inline;}
 .clear{clear:both;display:block;}
 .row{width:100%;margin-bottom:10px;display:none;}
