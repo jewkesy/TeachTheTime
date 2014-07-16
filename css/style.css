@@ -111,6 +111,10 @@ div.#container {
 	float: left;
 }
 
+div#timeText {
+	font-size: 2em;
+}
+
 div#theClock {
 	float: left;
 	width: 600px;
