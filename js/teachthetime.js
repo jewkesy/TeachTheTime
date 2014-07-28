@@ -103,7 +103,7 @@ function resetPage() {
         setTimeHands(theTimeToShow);
         showTimeInt = setTimeout(function() {
             setTimeText(theTimeToShow)
-        }, 5000);
+        }, 50);
     });
 
     $("#levels li").on('click', function(e) { 
@@ -171,61 +171,60 @@ function setTimeHands(theTime) {
 function setTimeText(theTime) {
     var hour = theTime.getHours();
     var mins = theTime.getMinutes();
-    var displayMins = "";
 
     var combinedDisplay = "";
-    if (hour >= 12) hour = hour - 12;
-    if (mins <= 3) {
-        displayMins = hour + " o'clock ";
+    console.log(hour);
+    if (hour >= 12) hour = hour - 12;    //handle 24hr
+
+    if (mins >= 34) {
+        hour++;
     } 
-    else if (mins >=4 && mins <=7) {
-        displayMins = " 5 minutes past " + hour;
+
+    if (mins <= 2) {
+        return $("#timeText").html(hour + " o'clock ");
+    } 
+    else if (mins >=3 && mins <=7) {
+        combinedDisplay = " 5 minutes past " ;
     }
     else if (mins >=8 && mins <=13) {
-        displayMins = " 10 minutes past " + hour;
+        combinedDisplay = " 10 minutes past ";
     }
     else if (mins >=14 && mins <=17) {
-        displayMins = " quarter past " + hour;
+        combinedDisplay = " quarter past ";
     }
     else if (mins >=18 && mins <=23) {
-        displayMins = " 20 minutes past " + hour;
+        combinedDisplay = " 20 minutes past ";
     }
     else if (mins >=24 && mins <=27) {
-        displayMins = " 25 minutes past " + hour;
+        combinedDisplay = " 25 minutes past ";
     }
     else if (mins >=28 && mins <=33) {
-        displayMins = " half past " + hour;
+        combinedDisplay = " half past ";
     }
     else if (mins >=34 && mins <=37) {
-        hour = hour + 1;
-        displayMins = " 25 minutes to " + hour;
+        combinedDisplay = " 25 minutes to ";
     }
     else if (mins >=38 && mins <=43) {
-        hour = hour + 1;
-        displayMins = " 20 minutes to " + hour;
+        combinedDisplay = " 20 minutes to ";
     }
     else if (mins >=44 && mins <=47) {
-        hour = hour + 1;
-        displayMins = " quarter to " + hour;
+        combinedDisplay = " quarter to ";
     }
     else if (mins >=48 && mins <=53) {
-        hour = hour + 1;
-        displayMins = " 10 minutes to " + hour;
+        combinedDisplay = " 10 minutes to "
     }
     else if (mins >=54) {
-        hour = hour + 1;
-        displayMins = " 5 minutes to " + hour;
+        combinedDisplay = " 5 minutes to ";
     }
     else {
-        displayMins = "unknown time! " + mins;
+        combinedDisplay = "unhandled time! " + theTime;
     }
 
-    combinedDisplay = displayMins;
-    $("#timeText").html(combinedDisplay);    
+    $("#timeText").html(combinedDisplay + hour);    
 }
 
 function loadTimes(level, count) {
-console.log(level);
+    console.log(level);
     theTimes = [];
     counter = 0;
 
