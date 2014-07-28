@@ -181,7 +181,7 @@ function getTimeText(theTime) {
     } 
 
     if (mins <= 2) {
-        return $("#timeText").html(hour + " o'clock ");
+        return hour + " o'clock ";
     } 
     else if (mins >=3 && mins <=7) {
         combinedDisplay = "5 minutes past " ;
