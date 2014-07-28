@@ -1,10 +1,15 @@
-var theWords = [];
+var theTimess = [];
 var counter = 0;
 var theColour = "";
 var wordCount = 10;
 var flipSpeed = "750";
 
+var secInt;
+var minInt;
+var hrInt;
+
 $(function(){
+
     $("#btn-reverse").on("click",function(e){
         $(".flipbox").flippyReverse();
         e.preventDefault();
@@ -68,64 +73,98 @@ $(function(){
 });
 
 function resetPage() {
-    console.error('NotImplementedException');
-    return; 
-    $("#wrapper").hide();
-    $("#goBack").hide();
 
-    $("#header").show('slow');
-    $("#menu").show('fast');
+    //$("#goBack").hide();
+
+    //$("#header").show('slow');
+    //$("#menu").show('fast');
+
+//$("#theClock").hide();
+$("#action-btn").hide();
+
+    $("#header").on('click', function(e) {
+        console.log('header clicked');
+        var theTimeToShow = loadRandomTime(new Date(2012, 0, 1), new Date());
+
+        clearInterval(secInt);
+        secInt = 0;
+        clearInterval(minInt);
+        minInt = 0;
+        clearInterval(hrInt);
+        hrInt = 0;
+
+        setTimeHands(theTimeToShow);
+        setTimeText(theTimeToShow);
+    });
 
     $("#levels li").on('click', function(e) { 
+        console.log('clicked');
         e.preventDefault; 
         this.blur(); 
         $("#levels").hide('slow');
         $("#about").hide('fast');
         $("#goBack").show('fast');
         $("#theWords").empty();
-        return loadWords($(this).attr('class'), wordCount); 
+        return loadTimes($(this).attr('class'), 5); 
     });
-    $("#goBack").on('click', function(e) {
-        $("#wrapper").hide('fast');
-        $("#about").show('slow');
-        $("#levels").show('fast');
-        $("#goBack").hide('fast');
-    });
+    // $("#goBack").on('click', function(e) {
+    //     $("#wrapper").hide('fast');
+    //     $("#about").show('slow');
+    //     $("#levels").show('fast');
+    //     $("#goBack").hide('fast');
+    // });
+
+    liveTime();
+
+}
+
+function loadRandomTime(start, end) {
+    return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
 }
 
 function liveTime() {
-     $(function() {
+    $(function() {
         var initialRun = true;
+        $("#sec").show();
+        secInt = setInterval( function() {
+            var theCurrentDate = new Date();
+            var seconds = theCurrentDate.getSeconds();
+            var sdegree = seconds * 6;
+            var srotate = "rotate(" + sdegree + "deg)";
+            $("#sec").css({ "transform": srotate });
+            setTimeText(theCurrentDate);
+        }, 1000 );
 
-          setInterval( function() {
-                var theCurrentDate = new Date();
-              var seconds = theCurrentDate.getSeconds();
-              var sdegree = seconds * 6;
-              var srotate = "rotate(" + sdegree + "deg)";
+        hrInt = setInterval( function() {
+            var hours = new Date().getHours();
+            var mins = new Date().getMinutes();
+            var hdegree = hours * 30 + (mins / 2);
+            var hrotate = "rotate(" + hdegree + "deg)";
+            $("#hour").css({ "transform": hrotate});
+        }, 1000 );
 
-              $("#sec").css({ "transform": srotate });
-              setTimeText(theCurrentDate);
-          }, 1000 );
-          
-          setInterval( function() {
-              var hours = new Date().getHours();
-              var mins = new Date().getMinutes();
-              var hdegree = hours * 30 + (mins / 2);
-              var hrotate = "rotate(" + hdegree + "deg)";
-              
-              $("#hour").css({ "transform": hrotate});
-              
-          }, 1000 );
-
-          setInterval( function() {
-              var mins = new Date().getMinutes();
-              var mdegree = mins * 6;
-              var mrotate = "rotate(" + mdegree + "deg)";
-              
-              $("#min").css({ "transform" : mrotate });
-              
-          }, 1000 );
+        minInt = setInterval( function() {
+            var mins = new Date().getMinutes();
+            var mdegree = mins * 6;
+            var mrotate = "rotate(" + mdegree + "deg)";
+            $("#min").css({ "transform" : mrotate });
+        }, 1000 );
     });
+}
+
+function setTimeHands(theTime) {
+    $("#sec").hide();
+    var hours = theTime.getHours();
+    var mins = theTime.getMinutes();
+
+    var hdegree = hours * 30 + (mins / 2);
+    var hrotate = "rotate(" + hdegree + "deg)";
+    $("#hour").css({ "transform": hrotate});
+
+
+    var mdegree = mins * 6;
+    var mrotate = "rotate(" + mdegree + "deg)";
+    $("#min").css({ "transform" : mrotate });
 }
 
 function setTimeText(theTime) {
@@ -138,37 +177,37 @@ function setTimeText(theTime) {
     if (mins <= 3) {
         displayMins = hour + " o'clock ";
     } 
-    else if (mins >=4 && mins <=8) {
+    else if (mins >=4 && mins <=7) {
         displayMins = " 5 minutes past " + hour;
     }
-    else if (mins >=9 && mins <=13) {
+    else if (mins >=8 && mins <=13) {
         displayMins = " 10 minutes past " + hour;
     }
-    else if (mins >=14 && mins <=18) {
+    else if (mins >=14 && mins <=17) {
         displayMins = " quarter past " + hour;
     }
-    else if (mins >=19 && mins <=23) {
+    else if (mins >=18 && mins <=23) {
         displayMins = " 20 minutes past " + hour;
     }
-    else if (mins >=24 && mins <=28) {
+    else if (mins >=24 && mins <=27) {
         displayMins = " 25 minutes past " + hour;
     }
-    else if (mins >=29 && mins <=33) {
+    else if (mins >=28 && mins <=33) {
         displayMins = " half past " + hour;
     }
-    else if (mins >=34 && mins <=38) {
+    else if (mins >=34 && mins <=37) {
         hour = hour + 1;
         displayMins = " 25 minutes to " + hour;
     }
-    else if (mins >=39 && mins <=43) {
+    else if (mins >=38 && mins <=43) {
         hour = hour + 1;
         displayMins = " 20 minutes to " + hour;
     }
-    else if (mins >=44 && mins <=48) {
+    else if (mins >=44 && mins <=47) {
         hour = hour + 1;
         displayMins = " quarter to " + hour;
     }
-    else if (mins >=49 && mins <=53) {
+    else if (mins >=48 && mins <=53) {
         hour = hour + 1;
         displayMins = " 10 minutes to " + hour;
     }
@@ -187,45 +226,44 @@ function setTimeText(theTime) {
 }
 
 function loadTimes(level, count) {
-    console.error('NotImplementedException');
-    return;
-    theWords = [];
+console.log(level);
+    theTimes = [];
     counter = 0;
 
     theColour = rgb2hex($("." + level).css( "background-color" ));
 
-    var words = [];
+    var times = [];
 
     switch (level) {
-        case "lvl1":
-            words = reception1;
+        case "lvl1":  // oclock hrs, can repeat??
+            times = reception1;
             break;
-        case "lvl2":
-            words = reception2;
+        case "lvl2":  // quarters, halves and oclocks
+            times = reception2;
             break;
-        case "lvl3":
-            words = year1;
+        case "lvl3":   //5 past, 5 to
+            times = year1;
             break;
-        case "lvl4":
-            words = year2;
+        case "lvl4": // 10 past, 10 to
+            times = year2;
             break;
-        case "lvl5":
-            words = year3;
+        case "lvl5":   // 20 past, 20 to
+            times = year3;
             break;
-        case "lvl6":
-            words = year4;
+        case "lvl6": // 25 past, 25 to
+            times = year4;
             break;
         default:
-            words = reception1;
+            times = reception1;
             break;
     }
-    shuffleArray(words);
+    shuffleArray(times);
 
-    if (!count) count = words.length;
-    if(count > words.length) count = words.length;
+    if (!count) count = times.length;
+    if(count > times.length) count = times.length;
 
     for(var i=0; i< count; i++) {
-        theWords.push(words[i]);
+        theTimes.push(times[i]);
     }
 
     $(".flipbox").html();
@@ -235,7 +273,7 @@ function loadTimes(level, count) {
         color_target: theColour,
         direction: "bottom",
         duration: flipSpeed,
-        verso: "<span class=\"big\">" + theWords[0] + "</span>",
+        verso: "<span class=\"big\">" + theTimes[0] + "</span>",
      });
     $("#wrapper").show('fast');
 //console.log("0 of " + theWords.length);

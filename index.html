@@ -17,21 +17,15 @@
     <script type="text/javascript">
         $(document).ready(function() {
             resetPage();
-            liveTime();
+            //liveTime();
         });
     </script>
 </head>
 <body>
   <div id="header"><h1>Welcome to TeachTheTime</h1><h2>Helping Your Child Learn to Recognise the Time</h2></div>
       <div id="container">
-        <div id="theClock">
-            <ul id="clock"> 
-                <li id="sec"></li>
-                <li id="hour"></li>
-                <li id="min"></li>
-            </ul>
-        </div>
-        <div id="menu">
+ 
+        <div id="menu" class="row">
           <ul id="levels">
             <li class="lvl1">Orange</li>    
             <li class="lvl2">Green</li>  
@@ -40,6 +34,13 @@
             <li class="lvl5">Purple</li>  
             <li class="lvl6">Blue</li>  
           </ul>
+        </div>
+        <div id="theClock">
+            <ul id="clock"> 
+                <li id="sec"></li>
+                <li id="hour"></li>
+                <li id="min"></li>
+            </ul>
         </div>
         <div id="timeText"></div>
       
