@@ -93,8 +93,11 @@ $("#action-btn").hide();
         clearInterval(hrInt);
         hrInt = 0;
 
+        $("#timeText").html("");    
         setTimeHands(theTimeToShow);
-        setTimeText(theTimeToShow);
+        setTimeout(function() {
+            setTimeText(theTimeToShow)
+        }, 5000);
     });
 
     $("#levels li").on('click', function(e) { 
@@ -168,12 +171,13 @@ function setTimeHands(theTime) {
 }
 
 function setTimeText(theTime) {
+    console.log('showing time text');
     var hour = theTime.getHours();
     var mins = theTime.getMinutes();
     var displayMins = "";
 
     var combinedDisplay = "";
-    if (hour >= 12) hour = hour - 12;
+    if (hour > 12) hour = hour - 12;
     if (mins <= 3) {
         displayMins = hour + " o'clock ";
     } 
