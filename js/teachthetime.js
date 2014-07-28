@@ -7,6 +7,10 @@ var flipSpeed = "750";
 var secInt;
 var minInt;
 var hrInt;
+var showTimeInt;
+
+var mdegree = 0;
+var hdegree = 0;
 
 $(function(){
 
@@ -79,8 +83,8 @@ function resetPage() {
     //$("#header").show('slow');
     //$("#menu").show('fast');
 
-//$("#theClock").hide();
-$("#action-btn").hide();
+    //$("#theClock").hide();
+    $("#action-btn").hide();
 
     $("#header").on('click', function(e) {
         console.log('header clicked');
@@ -92,10 +96,12 @@ $("#action-btn").hide();
         minInt = 0;
         clearInterval(hrInt);
         hrInt = 0;
+        clearInterval(showTimeInt);
+        showTimeInt = 0;
 
         $("#timeText").html("");    
         setTimeHands(theTimeToShow);
-        setTimeout(function() {
+        showTimeInt = setTimeout(function() {
             setTimeText(theTimeToShow)
         }, 5000);
     });
@@ -141,14 +147,14 @@ function liveTime() {
         hrInt = setInterval( function() {
             var hours = new Date().getHours();
             var mins = new Date().getMinutes();
-            var hdegree = hours * 30 + (mins / 2);
+            hdegree = hours * 30 + (mins / 2);
             var hrotate = "rotate(" + hdegree + "deg)";
             $("#hour").css({ "transform": hrotate});
         }, 1000 );
 
         minInt = setInterval( function() {
             var mins = new Date().getMinutes();
-            var mdegree = mins * 6;
+            mdegree = mins * 6;
             var mrotate = "rotate(" + mdegree + "deg)";
             $("#min").css({ "transform" : mrotate });
         }, 1000 );
@@ -160,24 +166,30 @@ function setTimeHands(theTime) {
     var hours = theTime.getHours();
     var mins = theTime.getMinutes();
 
-    var hdegree = hours * 30 + (mins / 2);
+    var currHdegree = hdegree;
+
+    hdegree = hours * 30 + (mins / 2);
     var hrotate = "rotate(" + hdegree + "deg)";
-    $("#hour").css({ "transform": hrotate});
 
+$("#hour").animateRotate(hdegree, currHdegree);
 
-    var mdegree = mins * 6;
+    //$("#hour").css({ "transform": hrotate});
+
+    var currMdegree = mdegree;
+
+    mdegree = mins * 6;
     var mrotate = "rotate(" + mdegree + "deg)";
     $("#min").css({ "transform" : mrotate });
+$("#min").animateRotate(mdegree, currMdegree);  
 }
 
 function setTimeText(theTime) {
-    console.log('showing time text');
     var hour = theTime.getHours();
     var mins = theTime.getMinutes();
     var displayMins = "";
 
     var combinedDisplay = "";
-    if (hour > 12) hour = hour - 12;
+    if (hour >= 12) hour = hour - 12;
     if (mins <= 3) {
         displayMins = hour + " o'clock ";
     } 
@@ -282,6 +294,22 @@ console.log(level);
     $("#wrapper").show('fast');
 //console.log("0 of " + theWords.length);
 }
+
+
+
+$.fn.animateRotate = function(angle, startAng, duration, easing, complete) {
+    var args = $.speed(duration, easing, complete);
+    var step = args.step;
+    return this.each(function(i, e) {
+        args.step = function(now) {
+            $.style(e, 'transform', 'rotate(' + now + 'deg)');
+            if (step) return step.apply(this, arguments);
+        };
+
+        $({deg: startAng}).animate({deg: angle}, args); //note the 0 is start, but this should be passed in...
+    });
+};
+
 
 function shuffleArray(array) {
     for (var i = array.length - 1; i > 0; i--) {
