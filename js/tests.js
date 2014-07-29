@@ -10,8 +10,17 @@ QUnit.test("getTimeText basics", function (assert) {
 });
 
 QUnit.test("getTimeText complex", function (assert) {
-	assert.equal(getTimeText(new Date("1970/01/01 22:37:00")), "25 minutes to 11");
+	assert.equal(getTimeText(new Date("1977/01/01 01:05:00")), "5 minutes past 1");
+	assert.equal(getTimeText(new Date("1977/01/01 01:55:00")), "5 minutes to 2");
+
+	assert.equal(getTimeText(new Date("1977/01/01 02:10:00")), "10 minutes past 2");
+	assert.equal(getTimeText(new Date("1977/01/01 02:50:00")), "10 minutes to 3");
+
+	assert.equal(getTimeText(new Date("1977/01/01 03:20:00")), "20 minutes past 3");
+	assert.equal(getTimeText(new Date("1970/01/01 03:40:00")), "20 minutes to 4");
+
 	assert.equal(getTimeText(new Date("1977/01/01 10:25:00")), "25 minutes past 10");
+	assert.equal(getTimeText(new Date("1970/01/01 22:37:00")), "25 minutes to 11");
 });
 
 QUnit.test("getTimeText ignoreSeconds", function (assert) {
