@@ -180,6 +180,8 @@ function getTimeText(theTime) {
         hour++;
     } 
 
+    if (hour == 0) { hour = 12; }
+
     if (mins <= 2) {
         return hour + " o'clock";
     } 
